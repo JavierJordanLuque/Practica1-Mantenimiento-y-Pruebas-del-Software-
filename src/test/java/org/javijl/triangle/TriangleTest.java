@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 /*
     Test cases: (Test Case -> EXPECTED OUTPUT)
     1. Valid Scalene Triangle (2-3-4) -> SCALENE
-        1.1. Non-Valid Scalene Triangle (2-5-10) -> RuntimeException
+        1.1. NonValid Scalene Triangle (2-5-10) -> RuntimeException
     2. Valid Equilateral Triangle (2-2-2) -> EQUILATERAL
     3. Valid Isosceles Triangle (11-11-9) -> ISOSCELES
-        3.1. Non-Valid Isosceles Triangle (2-2-4) -> RuntimeException
+        3.1. NonValid Isosceles Triangle (2-2-4) -> RuntimeException
     4. Three Permutations of a Valid Isosceles Triangle -> ISOSCELES
         4.1. Case (3-3-4)
         4.2. Case (3-4-3)
@@ -45,7 +45,7 @@ class TriangleTest {
     }
 
     @Test
-    void triangleTwoThreeFourIsScalene() {
+    void validScaleneIsScalene() {
         Triangle.TriangleType obtainedValue = triangle.getType(2, 3, 4);
         Triangle.TriangleType expectedValue = Triangle.TriangleType.SCALENE;
 
@@ -53,12 +53,12 @@ class TriangleTest {
     }
 
     @Test
-    void triangleTwoFiveTenIsException() {
+    void nonValidScaleneIsException() {
         assertThrows(RuntimeException.class, () -> triangle.getType(2, 5, 10));
     }
 
     @Test
-    void triangleTwoTwoTwoIsEquilateral() {
+    void validEquilateralIsEquilateral() {
         Triangle.TriangleType obtainedValue = triangle.getType(2, 2, 2);
         Triangle.TriangleType expectedValue = Triangle.TriangleType.EQUILATERAL;
 
@@ -66,7 +66,7 @@ class TriangleTest {
     }
 
     @Test
-    void triangleElevenElevenNineIsIsosceles() {
+    void validIsoscelesIsIsosceles() {
         Triangle.TriangleType obtainedValue = triangle.getType(11, 11, 9);
         Triangle.TriangleType expectedValue = Triangle.TriangleType.ISOSCELES;
 
@@ -74,12 +74,12 @@ class TriangleTest {
     }
 
     @Test
-    void triangleTwoTwoFourIsException() {
+    void nonValidIsoscelesIsException() {
         assertThrows(RuntimeException.class, () -> triangle.getType(2, 2, 4));
     }
 
     @Test
-    void triangleThreeThreeFourIsIsosceles() {
+    void validIsoscelesPermutationOneIsIsosceles() {
         Triangle.TriangleType obtainedValue = triangle.getType(3, 3, 4);
         Triangle.TriangleType expectedValue = Triangle.TriangleType.ISOSCELES;
 
@@ -87,7 +87,7 @@ class TriangleTest {
     }
 
     @Test
-    void triangleThreeFourThreeIsIsosceles() {
+    void validIsoscelesPermutationTwoIsIsosceles() {
         Triangle.TriangleType obtainedValue = triangle.getType(3, 4, 3);
         Triangle.TriangleType expectedValue = Triangle.TriangleType.ISOSCELES;
 
@@ -95,7 +95,7 @@ class TriangleTest {
     }
 
     @Test
-    void triangleFourThreeThreeIsIsosceles() {
+    void validIsoscelesPermutationThreeIsIsosceles() {
         Triangle.TriangleType obtainedValue = triangle.getType(4, 3, 3);
         Triangle.TriangleType expectedValue = Triangle.TriangleType.ISOSCELES;
 
@@ -103,52 +103,52 @@ class TriangleTest {
     }
 
     @Test
-    void triangleTwoTwoZeroIsException() {
+    void oneSideZeroIsException() {
         assertThrows(RuntimeException.class, () -> triangle.getType(2, 2, 0));
     }
 
     @Test
-    void triangleTwoTwoMinusFourIsException() {
+    void oneSideNegativeIsException() {
         assertThrows(RuntimeException.class, () -> triangle.getType(2, 2, -4));
     }
 
     @Test
-    void triangleOneTwoThreeIsException() {
+    void twoSidesSumEqualsThirdPermutationOneIsException() {
         assertThrows(RuntimeException.class, () -> triangle.getType(1, 2, 3));
     }
 
     @Test
-    void triangleOneThreeTwoIsException() {
+    void twoSidesSumEqualsThirdPermutationTwoIsException() {
         assertThrows(RuntimeException.class, () -> triangle.getType(1, 3, 2));
     }
 
     @Test
-    void triangleThreeOneTwoIsException() {
+    void twoSidesSumEqualsThirdPermutationThreeIsException() {
         assertThrows(RuntimeException.class, () -> triangle.getType(3, 1, 2));
     }
 
     @Test
-    void triangleOneTwoFourIsException() {
+    void twoSidesSumLessThanThirdPermutationOneIsException() {
         assertThrows(RuntimeException.class, () -> triangle.getType(1, 2, 4));
     }
 
     @Test
-    void triangleOneFourTwoIsException() {
+    void twoSidesSumLessThanThirdPermutationTwoIsException() {
         assertThrows(RuntimeException.class, () -> triangle.getType(1, 4, 2));
     }
 
     @Test
-    void triangleFourOneTwoIsException() {
+    void twoSidesSumLessThanThirdPermutationThreeIsException() {
         assertThrows(RuntimeException.class, () -> triangle.getType(4, 1, 2));
     }
 
     @Test
-    void triangleZeroZeroZeroIsException() {
+    void allSidesZeroIsException() {
         assertThrows(RuntimeException.class, () -> triangle.getType(0, 0, 0));
     }
 
     @Test
-    void triangleTwo_FiveThree_FiveFive_FiveIsScalene() {
+    void allSidesNonIntegerScaleneIsScalene() {
         Triangle.TriangleType obtainedValue = triangle.getType(2.5, 3.5, 5.5);
         Triangle.TriangleType expectedValue = Triangle.TriangleType.SCALENE;
 
